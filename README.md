@@ -13,5 +13,5 @@ Robot code for the 2017 FRC season
 - In Eclipse:
 - Open **File** menu and select **Import...**
 - Select **General>Existing Projects into Workspace** and hit **Next**
-- Click **Browse...** and navigate to and select the GitHub project folder (the default should be C:\Users\[Your User]\Documents\GitHub) and click **OK**
+- Click **Browse...** and navigate to and select the GitHub project folder (the default should be C:\Users\\[Your User]\Documents\GitHub) and click **OK**
 - You should see **Stronghold2017** in the project list. Make sure the box next to it is checked, and click **Finish**
