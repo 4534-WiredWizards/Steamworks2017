@@ -3,7 +3,7 @@ Robot code for the 2017 FRC season
 
 # Getting Started with Development
 
-### Install:
+### Install required development software:
 - [Install the FRC 2017 software suite](https://wpilib.screenstepslive.com/s/4485/m/13810/l/599669-installing-the-frc-2017-update-suite-all-languages)
 - [Install and set up eclipse](https://wpilib.screenstepslive.com/s/4485/m/13503/l/599679-installing-eclipse-c-java)
 - [Install the GitHub Desktop client](https://desktop.github.com/) and sign in with your account that is in the 
