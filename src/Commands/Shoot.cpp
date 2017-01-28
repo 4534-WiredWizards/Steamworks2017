@@ -29,7 +29,9 @@ void Shoot::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Shoot::Execute() {
+	Robot::shooter->SetSpinner(1.0);
 
+	Robot::shooter->SetKicker(1.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -39,11 +41,12 @@ bool Shoot::IsFinished() {
 
 // Called once after isFinished returns true
 void Shoot::End() {
-
+	Robot::shooter->StopKicker();
+	Robot::shooter->StopSpinner();
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void Shoot::Interrupted() {
-
+	Shoot::End();
 }
