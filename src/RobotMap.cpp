@@ -40,10 +40,10 @@ void RobotMap::init() {
     driveTrainFrontLeft.reset(new Spark(0));
     lw->AddActuator("DriveTrain", "Front Left", std::static_pointer_cast<Spark>(driveTrainFrontLeft));
     
-    driveTrainBackLeft.reset(new Spark(1));
+    driveTrainBackLeft.reset(new Spark(2));
     lw->AddActuator("DriveTrain", "Back Left", std::static_pointer_cast<Spark>(driveTrainBackLeft));
     
-    driveTrainFrontRight.reset(new Spark(2));
+    driveTrainFrontRight.reset(new Spark(1));
     lw->AddActuator("DriveTrain", "Front Right", std::static_pointer_cast<Spark>(driveTrainFrontRight));
     
     driveTrainBackRight.reset(new Spark(3));
