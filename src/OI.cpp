@@ -36,7 +36,7 @@ OI::OI() {
     joystickButton1->WhileHeld(new Shoot());
 
     // SmartDashboard Buttons
-    //SmartDashboard::PutData("DriveStraight", new DriveStraight());
+    SmartDashboard::PutData("DriveStraight", new DriveStraight(0.5));
     SmartDashboard::PutData("Stop", new Stop());
     SmartDashboard::PutData("MecanumDrive", new MecanumDrive());
     SmartDashboard::PutData("Hold", new Hold());
