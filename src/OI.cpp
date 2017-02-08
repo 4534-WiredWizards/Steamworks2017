@@ -17,8 +17,9 @@
 #include "Commands/Ascend.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Descend.h"
-#include "Commands/DriveStraight.h"
 #include "Commands/Hold.h"
+#include "Commands/IntakeOff.h"
+#include "Commands/IntakeOn.h"
 #include "Commands/MecanumDrive.h"
 #include "Commands/Off.h"
 #include "Commands/Shoot.h"
@@ -36,7 +37,8 @@ OI::OI() {
     joystickButton1->WhileHeld(new Shoot());
 
     // SmartDashboard Buttons
-    SmartDashboard::PutData("DriveStraight", new DriveStraight(0.5));
+    SmartDashboard::PutData("IntakeOff", new IntakeOff());
+    SmartDashboard::PutData("IntakeOn", new IntakeOn());
     SmartDashboard::PutData("Stop", new Stop());
     SmartDashboard::PutData("MecanumDrive", new MecanumDrive());
     SmartDashboard::PutData("Hold", new Hold());

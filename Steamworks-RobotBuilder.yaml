@@ -4,101 +4,21 @@ Version 2.0
 Children:
 - Children:
   - Children:
-    - Children: []
-      Properties:
-        Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id001 [Victor, Jaguar, Talon, VictorSP, TalonSRX, Spark, SD540]
-          default: Talon
-          name: Type
-          validators: null
-          value: Spark
-        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19']
-          default: '0'
-          name: Output Channel (PWM)
-          validators: &id003 [PWMOutput]
-          value: '4'
-      Base: Speed Controller
-      Name: Kicker
-    - Children: []
-      Properties:
-        Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: Talon
-          name: Type
-          validators: null
-          value: Spark
-        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id002
-          default: '0'
-          name: Output Channel (PWM)
-          validators: *id003
-          value: '5'
-      Base: Speed Controller
-      Name: Spinner
-    Properties:
-      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Default command parameters
-        validators: null
-        value: []
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-      Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: []
-        name: Constants
-        validators: null
-        value: &id004 []
-    Base: Subsystem
-    Name: Shooter
-  - Children:
-    - Children: []
-      Properties:
-        Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id001
-          default: Talon
-          name: Type
-          validators: null
-          value: Spark
-        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id002
-          default: '0'
-          name: Output Channel (PWM)
-          validators: *id003
-          value: '6'
-      Base: Speed Controller
-      Name: ClimbMotor
-    Properties:
-      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
-        default: []
-        name: Default command parameters
-        validators: null
-        value: []
-      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
-      Constants: !!robotbuilder.data.properties.ConstantsProperty
-        default: []
-        name: Constants
-        validators: null
-        value: *id004
-    Base: Subsystem
-    Name: Climber
-  - Children:
     - Children:
       - Children: []
         Properties:
           Type: !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id001
+            choices: &id001 [Victor, Jaguar, Talon, VictorSP, TalonSRX, Spark, SD540]
             default: Talon
             name: Type
             validators: null
             value: Spark
           Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-            choices: *id002
+            choices: &id002 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
+              '11', '12', '13', '14', '15', '16', '17', '18', '19']
             default: '0'
             name: Output Channel (PWM)
-            validators: *id003
+            validators: &id003 [PWMOutput]
             value: '0'
         Base: Speed Controller
         Name: frontLeft
@@ -205,9 +125,121 @@ Children:
         default: []
         name: Constants
         validators: null
-        value: *id004
+        value: &id004 []
     Base: Subsystem
     Name: Drivetrain
+  - Children:
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Spark
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '4'
+      Base: Speed Controller
+      Name: Kicker
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Spark
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '5'
+      Base: Speed Controller
+      Name: Spinner
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id004
+    Base: Subsystem
+    Name: Shooter
+  - Children:
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Spark
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '6'
+      Base: Speed Controller
+      Name: ClimbMotor
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: *id004
+    Base: Subsystem
+    Name: Climber
+  - Children:
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Spark
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '7'
+      Base: Speed Controller
+      Name: IntakeMotor
+    Properties:
+      Default command parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Default command parameters
+        validators: null
+        value: []
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+      Constants: !!robotbuilder.data.properties.ConstantsProperty
+        default: []
+        name: Constants
+        validators: null
+        value: []
+    Base: Subsystem
+    Name: Intake
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -439,11 +471,47 @@ Children:
         name: Button on SmartDashboard, validators: null, value: true}
     Base: Timed Command
     Name: DriveStraight
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Intake}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: IntakeOn
+  - Children: []
+    Properties:
+      Parameters: !!robotbuilder.data.properties.ParametersProperty
+        default: []
+        name: Parameters
+        validators: null
+        value: []
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Intake}
+      Parameter presets: !!robotbuilder.data.properties.ParameterSetProperty
+        default: []
+        name: Parameter presets
+        validators: null
+        value: []
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: IntakeOff
   Properties: {}
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\T420\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\conno\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
@@ -462,7 +530,7 @@ Properties:
     name: Export Subsystems, validators: null, value: true}
   Simulation World File: !!robotbuilder.data.properties.StringProperty {default: /usr/share/frcsim/worlds/GearsBotDemo.world,
     name: Simulation World File, validators: null, value: /usr/share/frcsim/worlds/GearsBotDemo.world}
-  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\T420\',
+  Wiring file location: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\conno\',
     extension: null, folder: true, name: Wiring file location, validators: null, value: 'C:\Users\T420\'}
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
