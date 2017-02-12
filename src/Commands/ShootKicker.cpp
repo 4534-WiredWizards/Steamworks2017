@@ -25,12 +25,11 @@ ShootKicker::ShootKicker(): Command() {
 
 // Called just before this Command runs the first time
 void ShootKicker::Initialize() {
-
+	j = Robot::oi->getJoystick1();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootKicker::Execute() {
-	std::shared_ptr<Joystick> j = Robot::oi->getJoystick1();
 	if (j->GetRawAxis(3) < 0.3) {
 		Robot::shooter->SetKicker(0.0);
 	} else {

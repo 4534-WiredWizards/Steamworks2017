@@ -25,13 +25,12 @@ ShootSpinner::ShootSpinner(): Command() {
 
 // Called just before this Command runs the first time
 void ShootSpinner::Initialize() {
-
+	j = Robot::oi->getJoystick1();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void ShootSpinner::Execute() {
 	//Robot::shooter->SetSpinner(-.5);
-	std::shared_ptr<Joystick> j = Robot::oi->getJoystick1();
 	if (j->GetRawAxis(3) < 0.3) {
 		Robot::tempShooter->SetSpinner(0.0);
 	}

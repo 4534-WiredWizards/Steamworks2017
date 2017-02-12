@@ -25,13 +25,12 @@ IntakeOn::IntakeOn(): Command() {
 
 // Called just before this Command runs the first time
 void IntakeOn::Initialize() {
-
+	j = Robot::oi->getJoystick1();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void IntakeOn::Execute() {
 	//Robot::intake->Set(-1.0);
-	std::shared_ptr<Joystick> j = Robot::oi->getJoystick1();
 	if (j->GetRawAxis(2) < 0.3) {
 		Robot::intake->Set(0.0);
 	}
