@@ -25,12 +25,16 @@ Ascend::Ascend(): Command() {
 
 // Called just before this Command runs the first time
 void Ascend::Initialize() {
-
+	j = Robot::oi->getJoystick1();
 }
 
 // Called repeatedly when this Command is scheduled to run
 void Ascend::Execute() {
-	Robot::climber->Set(1.0);
+	if(j->GetRawButton(2)) {
+	    Robot::climber->Set(1.0);
+	} else {
+		Robot::climber->Set(0.4);
+	}
 
 }
 
