@@ -35,7 +35,7 @@ void ShootSpinner::Execute() {
 		Robot::tempShooter->SetSpinner(0.0);
 	}
 	else {
-		Robot::tempShooter->SetSpinner(-.5);
+		Robot::tempShooter->SetSpinner(-.7);
 	}
 }
 
