@@ -48,6 +48,7 @@ public:
 	void Forward(double x);
 	void TurnGyro();
 	void MechanumDrive(std::shared_ptr<Joystick> joystick);
+	double GetGyroAngle();
 };
 
 #endif
