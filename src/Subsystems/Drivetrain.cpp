@@ -52,8 +52,8 @@ void Drivetrain::Stop() {
 	robotDrive->StopMotor();
 }
 
-void Drivetrain::Turn() {
-
+void Drivetrain::Turn(double x) {
+	robotDrive->MecanumDrive_Cartesian(0.0, 0.0, x, gyro->GetAngle());
 }
 
 void Drivetrain::TurnGyro() {
