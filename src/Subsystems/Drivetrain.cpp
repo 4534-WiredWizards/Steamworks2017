@@ -80,6 +80,10 @@ void Drivetrain::Turn(double x) {
 void Drivetrain::TurnGyro() {
 
 }
+
+double Drivetrain::GetGyroAngle() {
+	return gyro->GetAngle();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
