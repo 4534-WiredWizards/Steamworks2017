@@ -18,6 +18,8 @@
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Descend.h"
 #include "Commands/DriveStraight.h"
+//#include "Commands/GetBoilerData.h"
+//#include "Commands/GetGearData.h"
 #include "Commands/Hold.h"
 #include "Commands/IntakeOff.h"
 #include "Commands/IntakeOn.h"
@@ -44,7 +46,9 @@ OI::OI() {
     // SmartDashboard Buttons
     SmartDashboard::PutData("IntakeOff", new IntakeOff());
     SmartDashboard::PutData("IntakeOn", new IntakeOn());
-    SmartDashboard::PutData("DriveStraight", new DriveStraight());
+
+    SmartDashboard::PutData("DriveStraight", new DriveStraight(0.3));
+
     SmartDashboard::PutData("Stop", new Stop());
     SmartDashboard::PutData("MecanumDrive", new MecanumDrive());
     SmartDashboard::PutData("Hold", new Hold());
