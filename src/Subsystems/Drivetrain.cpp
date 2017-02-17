@@ -76,6 +76,12 @@ void Drivetrain::Stop() {
 void Drivetrain::Turn(double x) {
 	robotDrive->MecanumDrive_Cartesian(0.0, 0.0, x, gyro->GetAngle());
 }
+void Drivetrain::Strafe(double x) {
+	robotDrive->MecanumDrive_Cartesian(x, 0.0, 0.0, 0);
+}
+void Drivetrain::Forward(double x) {
+	robotDrive->MecanumDrive_Cartesian(0.0, x, 0.0, 0);
+}
 
 void Drivetrain::TurnGyro() {
 

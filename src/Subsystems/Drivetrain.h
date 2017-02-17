@@ -44,6 +44,8 @@ public:
 	void DriveStraight();
 	void Stop();
 	void Turn(double x);
+	void Strafe(double x);
+	void Forward(double x);
 	void TurnGyro();
 	void MechanumDrive(std::shared_ptr<Joystick> joystick);
 };
