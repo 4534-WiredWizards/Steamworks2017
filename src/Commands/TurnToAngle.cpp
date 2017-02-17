@@ -31,9 +31,9 @@ void TurnToAngle::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TurnToAngle::Execute() {
-	if (m_Angle > 0.0){
+	if (m_Angle > Robot::drivetrain->GetGyroAngle()){
 		Robot::drivetrain->Turn(0.5);
-	} else {
+	} else if(m_Angle < Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(-0.5);
 	}
 }
