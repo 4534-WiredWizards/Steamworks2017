@@ -75,4 +75,5 @@ void RobotMap::init() {
     lw->AddActuator("Drivetrain", "gyro", std::static_pointer_cast<ADXRS450_Gyro>(drivetrainGyro));
 
     visionTuple.reset(new VisionHandler::VisionTuple(-999, -999, -999));
+
 }
