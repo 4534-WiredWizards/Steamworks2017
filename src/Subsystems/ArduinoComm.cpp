@@ -14,6 +14,7 @@
 #include "ArduinoComm.h"
 #include "../RobotMap.h"
 #include "SerialPort.h"
+#include "SmartDashboard/SmartDashboard.h"
 #define MAX_INPUT_CHAR 32
 
 
@@ -49,12 +50,14 @@ void ArduinoComm::SetTimeout(double timeout) {
 }
 
 double ArduinoComm::ReadDistance(){
+
 	arduinoPort->Read(inputBuffer, MAX_INPUT_CHAR);
 	double R;
 	double L;
 	double A;
 	sscanf(inputBuffer, "%lf %lf %lf", &R, &L, &A);
 	if (A != -999) {
+		SmartDashboard::PutNumber("Ultrasonic Distance", (R + L) / 2);
 		return (R + L) / 2;
 	}
 	return -999; // angle value was bad, returning -999.
@@ -66,5 +69,6 @@ double ArduinoComm::ReadAngle(){
 	double L;
 	double A;
 	sscanf(inputBuffer, "%lf %lf %lf", &R, &L, &A);
+	SmartDashboard::PutNumber("Ultrasonic Angle", A);
 	return A; // angle value was bad, it will return -999.
 }
