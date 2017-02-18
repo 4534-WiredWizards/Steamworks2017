@@ -31,16 +31,23 @@ void TurnToAngle::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void TurnToAngle::Execute() {
-	if (m_Angle > Robot::drivetrain->GetGyroAngle()){
+	isFinished = false
+	if (m_Angle - 10 > Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(0.5);
-	} else if(m_Angle < Robot::drivetrain->GetGyroAngle()) {
+	} else if (m_Angle - 2 > Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() > m_Angle - 10) {
+		Robot::drivetrain->Turn(0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 10);
+	} else if (m_Angle + 10 < Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(-0.5);
+	} else if (m_Angle + 2 < Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() < m_Angle + 10) {
+		Robot::drivetrain->Turn(-0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 10);
+	} else {
+		isFinished = true;
 	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool TurnToAngle::IsFinished() {
-    return false;
+    return isFinished;
 }
 
 // Called once after isFinished returns true
