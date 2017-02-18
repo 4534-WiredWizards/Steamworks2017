@@ -46,7 +46,7 @@ OI::OI() {
     buttonY.reset(new JoystickButton(joystick1.get(), 4));
     buttonY->WhileHeld(new AlignToGear());
     buttonX.reset(new JoystickButton(joystick1.get(), 3));
-    buttonX->WhileHeld(new TurnToAngle(60));
+    buttonX->WhileHeld(new TurnToAngle(0));
     leftBumper.reset(new JoystickButton(joystick1.get(), 6));
     leftBumper->WhileHeld(new AlignToBoiler());
     rightBumper.reset(new JoystickButton(joystick1.get(), 5));
@@ -60,7 +60,7 @@ OI::OI() {
     SmartDashboard::PutData("RightGearAuto", new RightGearAuto());
     SmartDashboard::PutData("CenterGearAuto", new CenterGearAuto());
     SmartDashboard::PutData("LeftGearAuto", new LeftGearAuto());
-    SmartDashboard::PutData("DriveStraight", new DriveStraight(1));
+    SmartDashboard::PutData("DriveStraight", new DriveStraight(1.0, 0.5));
     SmartDashboard::PutData("AlignToBoiler", new AlignToBoiler());
     SmartDashboard::PutData("AlignToGear", new AlignToGear());
     SmartDashboard::PutData("TurnToAngle", new TurnToAngle(60));
