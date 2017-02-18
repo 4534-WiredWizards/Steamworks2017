@@ -19,6 +19,7 @@
 #include "Commands/Ascend.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/Descend.h"
+#include "Commands/DriveStraight.h"
 #include "Commands/Hold.h"
 #include "Commands/IntakeOff.h"
 #include "Commands/IntakeOn.h"
@@ -53,6 +54,7 @@ OI::OI() {
     joystickButton1->WhileHeld(new ShootKicker());
 
     // SmartDashboard Buttons
+    SmartDashboard::PutData("DriveStraight", new DriveStraight(1));
     SmartDashboard::PutData("AlignToBoiler", new AlignToBoiler());
     SmartDashboard::PutData("AlignToGear", new AlignToGear());
     SmartDashboard::PutData("TurnToAngle", new TurnToAngle(60));
