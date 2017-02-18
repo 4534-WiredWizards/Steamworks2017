@@ -40,6 +40,7 @@ void Robot::RobotInit() {
     visionHandler.reset(new VisionHandler());
     shooterSpeed = 0.5;
     arduinoComm.reset(new ArduinoComm());
+    arduinoComm->SetTimeout(0.05);
 	// This MUST be here. If the OI creates Commands (which it very likely
 	// will), constructing it during the construction of CommandBase (from
 	// which commands extend), subsystems are not guaranteed to be
