@@ -39,7 +39,7 @@ void TurnToAngle::Execute() {
 	} else if (m_Angle + 15 < Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(-0.5);
 	} else if (m_Angle + 2 < Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() < m_Angle + 15) {
-		Robot::drivetrain->Turn(-0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 15);
+		Robot::drivetrain->Turn(0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 15);
 	} else {
 		isFinished = true;
 	}
