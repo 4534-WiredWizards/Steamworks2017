@@ -36,18 +36,20 @@ void AlignToGear::Initialize() {
 void AlignToGear::Execute() {
 	isFinished=false;
 	VisionData = Robot::visionHandler->getCurrentTuple();
-	if(VisionData->getAngle() > 5){
-		Robot::drivetrain->Turn(0.5);
-	} else if(VisionData->getAngle() < -5){
-		Robot::drivetrain->Turn(-0.5);
-	} else if(VisionData->getCenter() > 1.5){
-		Robot::drivetrain->Strafe(0.5);
-	} else if(VisionData->getCenter() < 1.5){
-		Robot::drivetrain->Strafe(-0.5);
-	} else if(VisionData->getDistance() > 9){
-		Robot::drivetrain->Forward(0.5);
-	} else {
-		isFinished=true;
+	if(Robot::arduinoComm->ReadAngle() != -999) {
+		if(Robot::arduinoComm->ReadAngle() > 5){
+			Robot::drivetrain->Turn(-0.5);
+		} else if(Robot::arduinoComm->ReadAngle() < -5){
+			Robot::drivetrain->Turn(0.5);
+		} else if(VisionData->getCenter() > 1.5){
+			Robot::drivetrain->Strafe(0.5);
+		} else if(VisionData->getCenter() < 1.5){
+			Robot::drivetrain->Strafe(-0.5);
+		} else if(Robot::arduinoComm->ReadDistance() > 9){
+			Robot::drivetrain->Forward(0.5);
+		} else {
+			isFinished=true;
+		}
 	}
 }
 
