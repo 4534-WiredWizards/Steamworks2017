@@ -32,14 +32,14 @@ void TurnToAngle::Initialize() {
 // Called repeatedly when this Command is scheduled to run
 void TurnToAngle::Execute() {
 	isFinished = false;
-	if (m_Angle - 10 > Robot::drivetrain->GetGyroAngle()) {
+	if (m_Angle - 15 > Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(0.5);
-	} else if (m_Angle - 2 > Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() > m_Angle - 10) {
-		Robot::drivetrain->Turn(0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 10);
-	} else if (m_Angle + 10 < Robot::drivetrain->GetGyroAngle()) {
+	} else if (m_Angle - 2 > Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() > m_Angle - 15) {
+		Robot::drivetrain->Turn(0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 15);
+	} else if (m_Angle + 15 < Robot::drivetrain->GetGyroAngle()) {
 		Robot::drivetrain->Turn(-0.5);
-	} else if (m_Angle + 2 < Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() < m_Angle + 10) {
-		Robot::drivetrain->Turn(-0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 10);
+	} else if (m_Angle + 2 < Robot::drivetrain->GetGyroAngle() && Robot::drivetrain->GetGyroAngle() < m_Angle + 15) {
+		Robot::drivetrain->Turn(-0.5 * (m_Angle - Robot::drivetrain->GetGyroAngle()) / 15);
 	} else {
 		isFinished = true;
 	}
