@@ -18,13 +18,16 @@
 #include "Commands/AlignToGear.h"
 #include "Commands/Ascend.h"
 #include "Commands/AutonomousCommand.h"
+#include "Commands/CenterGearAuto.h"
 #include "Commands/Descend.h"
 #include "Commands/DriveStraight.h"
 #include "Commands/Hold.h"
 #include "Commands/IntakeOff.h"
 #include "Commands/IntakeOn.h"
+#include "Commands/LeftGearAuto.h"
 #include "Commands/MecanumDrive.h"
 #include "Commands/Off.h"
+#include "Commands/RightGearAuto.h"
 #include "Commands/ShootKicker.h"
 #include "Commands/ShootSpinner.h"
 #include "Commands/Stop.h"
@@ -54,6 +57,9 @@ OI::OI() {
     joystickButton1->WhileHeld(new ShootKicker());
 
     // SmartDashboard Buttons
+    SmartDashboard::PutData("RightGearAuto", new RightGearAuto());
+    SmartDashboard::PutData("CenterGearAuto", new CenterGearAuto());
+    SmartDashboard::PutData("LeftGearAuto", new LeftGearAuto());
     SmartDashboard::PutData("DriveStraight", new DriveStraight(1));
     SmartDashboard::PutData("AlignToBoiler", new AlignToBoiler());
     SmartDashboard::PutData("AlignToGear", new AlignToGear());
