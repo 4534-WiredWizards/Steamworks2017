@@ -93,6 +93,8 @@ void Robot::TeleopPeriodic() {
 	}
 
 	std::cout << joystick1->GetTwist() << std::endl;
+	SmartDashboard::PutNumber("Ultrasonic Distance", arduinoComm->ReadDistance());
+	SmartDashboard::PutNumber("Ultrasonic Angle", arduinoComm->ReadAngle());
 }
 
 void Robot::TestPeriodic() {
