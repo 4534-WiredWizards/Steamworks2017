@@ -30,7 +30,15 @@ void MecanumDrive::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void MecanumDrive::Execute() {
-	Robot::drivetrain->MechanumDrive(Robot::oi->getJoystick1());
+	if (Robot::oi->getJoystick1()->GetPOV(0) == -1) {
+		Robot::drivetrain->MechanumDrive(Robot::oi->getJoystick1());
+	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 0) {
+		Robot::drivetrain->TurnGyro(0);
+	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 45) {
+		Robot::drivetrain->TurnGyro(-60);
+	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 315) {
+		Robot::drivetrain->TurnGyro(60);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

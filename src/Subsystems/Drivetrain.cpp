@@ -86,7 +86,16 @@ void Drivetrain::Forward(double x) {
 	robotDrive->MecanumDrive_Cartesian(0.0, -x, 0.0, 0);
 }
 
-void Drivetrain::TurnGyro() {
+void Drivetrain::TurnGyro(double angle) {
+	if (angle - 15 > gyro->GetAngle()) {
+			Drivetrain::Turn(0.5);
+		} else if (angle - 2 > gyro->GetAngle() && gyro->GetAngle() > angle - 15) {
+			Drivetrain::Turn(0.5 * (angle - gyro->GetAngle()) / 15);
+		} else if (angle + 15 < gyro->GetAngle()) {
+			Drivetrain::Turn(-0.5);
+		} else if (angle + 2 < gyro->GetAngle() && gyro->GetAngle() < angle + 15) {
+			Drivetrain::Turn(0.5 * (angle - gyro->GetAngle()) / 15);
+		}
 
 }
 
