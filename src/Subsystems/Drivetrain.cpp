@@ -83,6 +83,11 @@ void Drivetrain::Turn(double x, std::shared_ptr<Joystick> joystick) {
 	axis4 = joystick->GetRawAxis(4);
 	robotDrive->MecanumDrive_Cartesian(axis0, axis1, x, gyro->GetAngle());
 }
+
+void Drivetrain::Turn(double x) {
+	robotDrive->MecanumDrive_Cartesian(0.0, 0.0, x, gyro->GetAngle());
+}
+
 void Drivetrain::Strafe(double x) {
 	robotDrive->MecanumDrive_Cartesian(-x, 0.0, 0.0, 0);
 }

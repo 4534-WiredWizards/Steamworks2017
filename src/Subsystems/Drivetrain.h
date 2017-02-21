@@ -44,6 +44,7 @@ public:
 	void DriveStraight(double rate);
 	void Stop();
 	void Turn(double x, std::shared_ptr<Joystick> joystick);
+	void Turn(double x);
 	void Strafe(double x);
 	void Forward(double x);
 	void TurnGyro(double angle, std::shared_ptr<Joystick> joystick);

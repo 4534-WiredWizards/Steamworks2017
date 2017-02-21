@@ -33,11 +33,11 @@ void MecanumDrive::Execute() {
 	if (Robot::oi->getJoystick1()->GetPOV(0) == -1) {
 		Robot::drivetrain->MechanumDrive(Robot::oi->getJoystick1());
 	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 0) {
-		Robot::drivetrain->TurnGyro(0);
+		Robot::drivetrain->TurnGyro(0, Robot::oi->getJoystick1());
 	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 90) {
-		Robot::drivetrain->TurnGyro(-60);
+		Robot::drivetrain->TurnGyro(-60, Robot::oi->getJoystick1());
 	} else if (Robot::oi->getJoystick1()->GetPOV(0) == 270) {
-		Robot::drivetrain->TurnGyro(60);
+		Robot::drivetrain->TurnGyro(60, Robot::oi->getJoystick1());
 	}
 }
 
