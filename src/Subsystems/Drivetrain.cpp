@@ -76,8 +76,12 @@ void Drivetrain::Stop() {
 	robotDrive->StopMotor();
 }
 
-void Drivetrain::Turn(double x) {
-	robotDrive->MecanumDrive_Cartesian(0.0, 0.0, x, gyro->GetAngle());
+void Drivetrain::Turn(double x, std::shared_ptr<Joystick> joystick) {
+	SmartDashboard::PutNumber("Gyro Angle", gyro->GetAngle());
+	axis0 = joystick->GetRawAxis(0);
+	axis1 = joystick->GetRawAxis(1);
+	axis4 = joystick->GetRawAxis(4);
+	robotDrive->MecanumDrive_Cartesian(axis0, axis1, x, gyro->GetAngle());
 }
 void Drivetrain::Strafe(double x) {
 	robotDrive->MecanumDrive_Cartesian(-x, 0.0, 0.0, 0);
@@ -86,7 +90,16 @@ void Drivetrain::Forward(double x) {
 	robotDrive->MecanumDrive_Cartesian(0.0, x, 0.0, 0);
 }
 
-void Drivetrain::TurnGyro() {
+void Drivetrain::TurnGyro(double angle, std::shared_ptr<Joystick> joystick) {
+	if (angle - 15 > gyro->GetAngle()) {
+			Drivetrain::Turn(0.5, joystick);
+		} else if (angle - 2 > gyro->GetAngle() && gyro->GetAngle() > angle - 15) {
+			Drivetrain::Turn(0.5 * (angle - gyro->GetAngle()) / 15, joystick);
+		} else if (angle + 15 < gyro->GetAngle()) {
+			Drivetrain::Turn(-0.5, joystick);
+		} else if (angle + 2 < gyro->GetAngle() && gyro->GetAngle() < angle + 15) {
+			Drivetrain::Turn(0.5 * (angle - gyro->GetAngle()) / 15, joystick);
+		}
 
 }
 
