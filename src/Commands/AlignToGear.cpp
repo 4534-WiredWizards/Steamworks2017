@@ -30,6 +30,7 @@ AlignToGear::AlignToGear(): Command() {
 // Called just before this Command runs the first time
 void AlignToGear::Initialize() {
 	Robot::arduinoComm->WriteTest("1");
+	previousValue = Robot::arduinoComm->GetAngle();
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -38,20 +39,40 @@ void AlignToGear::Execute() {
 	Robot::arduinoComm->ReadData();
 	//double CV = visionTable->GetNumber("gearCV",-999);
 	std::cout << "angle: " << Robot::arduinoComm->GetAngle() << std::endl;
-	if(Robot::arduinoComm->GetAngle() != -999) {
+	if(Robot::arduinoComm->GetAngle() != -999 && std::fabs(Robot::arduinoComm->GetAngle() - previousValue) < 10) {
 		if(Robot::arduinoComm->GetAngle() > 5){
-			Robot::drivetrain->Turn(-0.4);
+			double turnVal = (Robot::arduinoComm->GetAngle() - 2) * 0.1; //  scales the values down as we get closer.
+			if (turnVal < -0.4){
+				Robot::drivetrain->Turn(-0.4);
+			} else {
+				Robot::drivetrain->Turn(-turnVal);
+			}
 		} else if(Robot::arduinoComm->GetAngle() < -5){
-			Robot::drivetrain->Turn(0.4);
+			double turnVal = (Robot::arduinoComm->GetAngle() + 2) * 0.1; //  scales the values down as we get closer.
+			if (turnVal < 0.4){
+				Robot::drivetrain->Turn(0.4);
+			} else {
+				Robot::drivetrain->Turn(-turnVal);
+			}
 		} else {
 			Robot::visionHandler->updateSubsystem();
 			VisionData = Robot::visionHandler->getCurrentTuple();
 			std::cout << "lateral: " << VisionData->getCenter() << std::endl;
 			if(VisionData->getCenter() != -999) {
-				if(VisionData->getCenter() > 1.5){
-					Robot::drivetrain->Strafe(0.5);
-				} else if(VisionData->getCenter() < -1.5){
-					Robot::drivetrain->Strafe(-0.5);
+				if(VisionData->getCenter() > 1.5 && Robot::arduinoComm->GetDistance() > 36){
+					double val = (VisionData->getCenter() - .25) * 0.3; //  scales the values down as we get closer.
+					if (val > 0.7){
+						Robot::drivetrain->Strafe(0.7);
+					} else {
+						Robot::drivetrain->Strafe(val);
+					}
+				} else if(VisionData->getCenter() < -1.5 && Robot::arduinoComm->GetDistance() > 36){
+					double val = (VisionData->getCenter() + .25) * 0.3; //  scales the values down as we get closer.
+					if (val < -0.7){
+						Robot::drivetrain->Strafe(-0.7);
+					} else {
+						Robot::drivetrain->Strafe(val);
+					}
 				} else {
 					std::cout << "distance: " << Robot::arduinoComm->GetDistance() << std::endl;
 					if(Robot::arduinoComm->GetDistance() > 9){
@@ -63,6 +84,7 @@ void AlignToGear::Execute() {
 			}
 		}
 	}
+	previousValue = Robot::arduinoComm->GetAngle();
 }
 
 // Make this return true when this Command no longer needs to run execute()
