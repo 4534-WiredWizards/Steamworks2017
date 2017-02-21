@@ -57,5 +57,8 @@ public:
 	virtual void TeleopInit();
 	virtual void TeleopPeriodic();
 	virtual void TestPeriodic();
+
+	frc::SendableChooser<frc::Command*> chooser;
+
 };
 #endif
