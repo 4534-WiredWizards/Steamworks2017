@@ -27,6 +27,10 @@
 ArduinoComm::ArduinoComm() : Subsystem("ArduinoComm") {
 	arduinoPort = RobotMap::arduinoComm;
 	inputBuffer = (char*)calloc(MAX_INPUT_CHAR, sizeof(char));
+	rightDistance = -999;
+	leftDistance = -999;
+	angleVal = -999;
+	arduinoPort->EnableTermination();
 
 }
 
@@ -49,26 +53,21 @@ void ArduinoComm::SetTimeout(double timeout) {
 	arduinoPort->SetTimeout(timeout);
 }
 
-double ArduinoComm::ReadDistance(){
-
-	arduinoPort->Read(inputBuffer, MAX_INPUT_CHAR);
-	double R;
-	double L;
-	double A;
-	sscanf(inputBuffer, "%lf %lf %lf", &R, &L, &A);
-	if (A != -999) {
-		SmartDashboard::PutNumber("Ultrasonic Distance", (R + L) / 2);
-		return (R + L) / 2;
+double ArduinoComm::GetDistance(){
+	if (angleVal != -999) {
+		return (rightDistance + leftDistance) / 2;
 	}
-	return -999; // angle value was bad, returning -999.
+	return -999; // values were bad, returning -999.
 }
 
-double ArduinoComm::ReadAngle(){
-	arduinoPort->Read(inputBuffer, MAX_INPUT_CHAR);
-	double R;
-	double L;
-	double A;
-	sscanf(inputBuffer, "%lf %lf %lf", &R, &L, &A);
-	SmartDashboard::PutNumber("Ultrasonic Angle", A);
-	return A; // angle value was bad, it will return -999.
+double ArduinoComm::GetAngle(){
+	return angleVal; // if angle value was bad, it will return -999.
 }
+
+void ArduinoComm::ReadData() {
+	arduinoPort->Write("?");
+	arduinoPort->Read(inputBuffer, MAX_INPUT_CHAR);
+	sscanf(inputBuffer, "%lf %lf %lf", &rightDistance, &leftDistance, &angleVal);
+	std::cout << inputBuffer << std::endl;
+}
+

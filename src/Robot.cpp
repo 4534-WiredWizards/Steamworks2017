@@ -98,9 +98,9 @@ void Robot::TeleopPeriodic() {
 		RobotMap::drivetrainGyro->Reset();
 	}
 
-	std::cout << joystick1->GetTwist() << std::endl;
-	SmartDashboard::PutNumber("Ultrasonic Distance", arduinoComm->ReadDistance());
-	SmartDashboard::PutNumber("Ultrasonic Angle", arduinoComm->ReadAngle());
+	//std::cout << joystick1->GetTwist() << std::endl;
+	//visionHandler->updateSubsystem();
+
 }
 
 void Robot::TestPeriodic() {

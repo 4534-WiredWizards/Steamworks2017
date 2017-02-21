@@ -56,10 +56,10 @@ void Drivetrain::MechanumDrive(std::shared_ptr<Joystick> joystick) {
 	axis0 = joystick->GetRawAxis(0);
 	axis1 = joystick->GetRawAxis(1);
 	axis4 = joystick->GetRawAxis(4);
-	std::cout << "======" << std::endl;
-	std::cout << axis0 << std::endl;
-	std::cout << axis1 << std::endl;
-	std::cout << axis4 << std::endl;
+	//std::cout << "======" << std::endl;
+	//std::cout << axis0 << std::endl;
+	//std::cout << axis1 << std::endl;
+	//std::cout << axis4 << std::endl;
 	if (fabs(axis0) < 0.2) {
 		axis0 = 0.0;
 	}
@@ -92,7 +92,7 @@ void Drivetrain::Strafe(double x) {
 	robotDrive->MecanumDrive_Cartesian(-x, 0.0, 0.0, 0);
 }
 void Drivetrain::Forward(double x) {
-	robotDrive->MecanumDrive_Cartesian(0.0, -x, 0.0, 0);
+	robotDrive->MecanumDrive_Cartesian(0.0, x, 0.0, 0);
 }
 
 void Drivetrain::TurnGyro(double angle, std::shared_ptr<Joystick> joystick) {
