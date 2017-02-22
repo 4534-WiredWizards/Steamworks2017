@@ -27,7 +27,7 @@ TurnToAngle::TurnToAngle(double Angle): Command() {
 
 // Called just before this Command runs the first time
 void TurnToAngle::Initialize() {
-
+	Robot::arduinoComm->WriteTest("3");
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -68,6 +68,11 @@ bool TurnToAngle::IsFinished() {
 // Called once after isFinished returns true
 void TurnToAngle::End() {
 	Robot::drivetrain->Stop();
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	}
 }
 
 // Called when another command which requires one or more of the same

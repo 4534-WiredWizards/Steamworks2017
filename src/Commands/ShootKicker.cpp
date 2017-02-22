@@ -26,6 +26,7 @@ ShootKicker::ShootKicker(): Command() {
 // Called just before this Command runs the first time
 void ShootKicker::Initialize() {
 	j = Robot::oi->getJoystick1();
+	Robot::arduinoComm->WriteTest("Tr");
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -45,6 +46,12 @@ bool ShootKicker::IsFinished() {
 // Called once after isFinished returns true
 void ShootKicker::End() {
 	Robot::shooter->SetKicker(0.0);
+	Robot::arduinoComm->WriteTest("w");
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	}
 }
 
 // Called when another command which requires one or more of the same

@@ -26,6 +26,7 @@ Ascend::Ascend(): Command() {
 // Called just before this Command runs the first time
 void Ascend::Initialize() {
 	j = Robot::oi->getJoystick1();
+	Robot::arduinoComm->WriteTest("3");
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -46,7 +47,12 @@ bool Ascend::IsFinished() {
 // Called once after isFinished returns true
 void Ascend::End() {
 	Robot::climber->Stop();
-
+	Robot::arduinoComm->WriteTest("w");
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	}
 }
 
 // Called when another command which requires one or more of the same

@@ -29,7 +29,7 @@ AlignToGear::AlignToGear(): Command() {
 
 // Called just before this Command runs the first time
 void AlignToGear::Initialize() {
-	Robot::arduinoComm->WriteTest("1");
+	Robot::arduinoComm->WriteTest("Oc");
 	previousValue = Robot::arduinoComm->GetAngle();
 }
 
@@ -42,14 +42,14 @@ void AlignToGear::Execute() {
 	if(Robot::arduinoComm->GetAngle() != -999 && std::fabs(Robot::arduinoComm->GetAngle() - previousValue) < 10) {
 		if(Robot::arduinoComm->GetAngle() > 5){
 			double turnVal = (Robot::arduinoComm->GetAngle() - 2) * 0.1; //  scales the values down as we get closer.
-			if (turnVal < -0.4){
+			if (turnVal < 0.4){
 				Robot::drivetrain->Turn(-0.4);
 			} else {
 				Robot::drivetrain->Turn(-turnVal);
 			}
 		} else if(Robot::arduinoComm->GetAngle() < -5){
 			double turnVal = (Robot::arduinoComm->GetAngle() + 2) * 0.1; //  scales the values down as we get closer.
-			if (turnVal < 0.4){
+			if (turnVal < -0.4){
 				Robot::drivetrain->Turn(0.4);
 			} else {
 				Robot::drivetrain->Turn(-turnVal);
@@ -95,6 +95,12 @@ bool AlignToGear::IsFinished() {
 // Called once after isFinished returns true
 void AlignToGear::End() {
 	Robot::drivetrain->Stop();
+	Robot::arduinoComm->WriteTest("w");
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	}
 }
 
 // Called when another command which requires one or more of the same

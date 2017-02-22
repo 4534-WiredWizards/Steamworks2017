@@ -61,6 +61,7 @@ void Robot::RobotInit() {
 	chooser.AddObject("Right Gear", new (RightGearAuto));
 	chooser.AddDefault("Center Gear", new (CenterGearAuto));
 	SmartDashboard::PutData("Autonomous Modes", &chooser);
+	arduinoComm->WriteTest("4");
   }
 
 /**
@@ -68,7 +69,7 @@ void Robot::RobotInit() {
  * You can use it to reset subsystems before shutting down.
  */
 void Robot::DisabledInit(){
-
+	arduinoComm->WriteTest("5");
 }
 
 void Robot::DisabledPeriodic() {
@@ -80,6 +81,7 @@ void Robot::AutonomousInit() {
 	autonomousCommand.reset((Command *)chooser.GetSelected());
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
+	arduinoComm->WriteTest("Gg");
 }
 
 void Robot::AutonomousPeriodic() {
@@ -98,6 +100,7 @@ void Robot::TeleopInit() {
 	} else if (allianceColor == DriverStation::Alliance::kRed) {
 		arduinoComm->WriteTest("R"); // Will use red color.
 	}
+	arduinoComm->WriteTest("w");
 }
 
 void Robot::TeleopPeriodic() {
