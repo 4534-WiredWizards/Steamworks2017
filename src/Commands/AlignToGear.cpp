@@ -42,7 +42,7 @@ void AlignToGear::Execute() {
 	if(Robot::arduinoComm->GetAngle() != -999 && std::fabs(Robot::arduinoComm->GetAngle() - previousValue) < 10) {
 		if(Robot::arduinoComm->GetAngle() > 5){
 			double turnVal = (Robot::arduinoComm->GetAngle() - 2) * 0.1; //  scales the values down as we get closer.
-			if (turnVal < 0.4){
+			if (turnVal > 0.4){
 				Robot::drivetrain->Turn(-0.4);
 			} else {
 				Robot::drivetrain->Turn(-turnVal);

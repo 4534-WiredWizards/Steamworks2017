@@ -107,6 +107,14 @@ void Drivetrain::TurnGyro(double angle, std::shared_ptr<Joystick> joystick) {
 		}
 
 }
+void Drivetrain::Cartesian(double x, double y, double turn, bool isFieldOriented){
+	if(isFieldOriented){
+		robotDrive->MecanumDrive_Cartesian(x, y, turn, gyro->GetAngle());
+	} else {
+		robotDrive->MecanumDrive_Cartesian(x, y, turn, 0);
+	}
+}
+
 
 double Drivetrain::GetGyroAngle() {
 	return gyro->GetAngle();
