@@ -31,12 +31,7 @@ void Ascend::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void Ascend::Execute() {
-	if(j->GetRawButton(2)) {
-	    Robot::climber->Set(1.0);
-	} else {
-		Robot::climber->Set(0.4);
-	}
-
+		Robot::climber->Set(1.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()

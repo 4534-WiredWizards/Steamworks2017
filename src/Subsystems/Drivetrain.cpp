@@ -73,7 +73,8 @@ void Drivetrain::MechanumDrive(std::shared_ptr<Joystick> joystick) {
 }
 
 void Drivetrain::Stop() {
-	robotDrive->StopMotor();
+	//robotDrive->StopMotor();
+	robotDrive->MecanumDrive_Cartesian(0.0,0.0,0.0,0.0);
 }
 
 void Drivetrain::Turn(double x, std::shared_ptr<Joystick> joystick) {

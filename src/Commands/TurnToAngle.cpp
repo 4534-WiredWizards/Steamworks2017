@@ -44,7 +44,7 @@ void TurnToAngle::Execute() {
 	if (currentAngle + m_Angle > 180) {
 		m_Angle -= 360;
 	} else if (currentAngle - m_Angle < -180) {
-
+		m_Angle += 360;
 	}
 
 	if (m_Angle - 15 > currentAngle) {
