@@ -48,5 +48,5 @@ void DriveStraight::End() {
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void DriveStraight::Interrupted() {
-
+	DriveStraight::End();
 }
