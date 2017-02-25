@@ -53,8 +53,8 @@ void Drivetrain::DriveStraight(double rate) {
 
 void Drivetrain::MechanumDrive(std::shared_ptr<Joystick> joystick) {
 	SmartDashboard::PutNumber("Gyro Angle", gyro->GetAngle());
-	axis0 = joystick->GetRawAxis(0);
-	axis1 = joystick->GetRawAxis(1);
+	axis0 = -joystick->GetRawAxis(0);
+	axis1 = -joystick->GetRawAxis(1);
 	axis4 = joystick->GetRawAxis(4);
 	//std::cout << "======" << std::endl;
 	//std::cout << axis0 << std::endl;
@@ -78,8 +78,8 @@ void Drivetrain::Stop() {
 
 void Drivetrain::Turn(double x, std::shared_ptr<Joystick> joystick) {
 	SmartDashboard::PutNumber("Gyro Angle", gyro->GetAngle());
-	axis0 = joystick->GetRawAxis(0);
-	axis1 = joystick->GetRawAxis(1);
+	axis0 = -joystick->GetRawAxis(0);
+	axis1 = -joystick->GetRawAxis(1);
 	axis4 = joystick->GetRawAxis(4);
 	robotDrive->MecanumDrive_Cartesian(axis0, axis1, x, gyro->GetAngle());
 }
