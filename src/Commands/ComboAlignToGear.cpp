@@ -16,6 +16,7 @@ ComboAlignToGear::ComboAlignToGear() : Command() {
 
 // Called just before this Command runs the first time
 void ComboAlignToGear::Initialize() {
+	Robot::visionHandler->setMode(VisionHandler::Mode::kGear);
 	Robot::arduinoComm->WriteTest("Og");
 	//previousValue = Robot::arduinoComm->GetAngle();
 }
@@ -24,7 +25,7 @@ void ComboAlignToGear::Initialize() {
 void ComboAlignToGear::Execute() {
 
 	Robot::arduinoComm->ReadData();
-	Robot::visionHandler->updateSubsystem();
+	Robot::visionHandler->readGearValues();
 	VisionData = Robot::visionHandler->getCurrentTuple();
 
 	//rotation
@@ -32,6 +33,14 @@ void ComboAlignToGear::Execute() {
 		//bad value, aimlessly spin slowly.
 		isAngleCorrect = false;
 		rotate = 0.3;
+	} else if (Robot::arduinoComm->GetAngle() == -777) {
+		//one sensor broken, don't use angle.
+		isAngleCorrect = true;
+		rotate = 0.0;
+	} else if (Robot::arduinoComm->GetAngle() == -555) {
+		//both sensors broken, pass.
+		isAngleCorrect = true;
+		rotate = 0.0;
 	} else if (Robot::arduinoComm->GetAngle() < -5) {
 		isAngleCorrect = false;
 		rotate = (Robot::arduinoComm->GetAngle() + 2) * -0.1; //  scales the values down as we get closer.
@@ -54,19 +63,19 @@ void ComboAlignToGear::Execute() {
 		// too close, don't trust camera.
 		isLateralCorrect = true;
 		strafe = 0.0;
-	} else if (VisionData->getCenter() == -999) {
+	} else if (VisionData->getGearCenter() == -999) {
 		//bad value, hope other movement gets us in view.
 		isLateralCorrect = false;
 		strafe = 0.0;
-	} else if (VisionData->getCenter() < -1.5) {
+	} else if (VisionData->getGearCenter() < -1.5) {
 		isLateralCorrect = false;
-		strafe = (VisionData->getCenter() + .25) * 0.3; //  scales the values down as we get closer.
+		strafe = (VisionData->getGearCenter() + .25) * 0.3; //  scales the values down as we get closer.
 		if (strafe < -0.7) {
 			strafe = -0.7; // constrain value to -0.7
 		}
-	} else if (VisionData->getCenter() > 1.5) {
+	} else if (VisionData->getGearCenter() > 1.5) {
 		isLateralCorrect = false;
-		strafe = (VisionData->getCenter() - .25) * 0.3; //  scales the values down as we get closer.
+		strafe = (VisionData->getGearCenter() - .25) * 0.3; //  scales the values down as we get closer.
 		if (strafe > 0.7) {
 			strafe = 0.7; // constrain value to 0.7
 		}
@@ -79,6 +88,10 @@ void ComboAlignToGear::Execute() {
 	if (Robot::arduinoComm->GetAngle() == -999) {
 		//bad value on angle, wait.
 		isDistanceCorrect = false;
+		forward = 0.0;
+	} else if (Robot::arduinoComm->GetAngle() == -555) {
+		//both sensors broken, pass.
+		isDistanceCorrect = true;
 		forward = 0.0;
 	} else if (Robot::arduinoComm->GetDistance() > 42) {
 		isDistanceCorrect = false;

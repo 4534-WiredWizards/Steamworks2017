@@ -74,6 +74,6 @@ void RobotMap::init() {
     drivetrainGyro.reset(new ADXRS450_Gyro);
     lw->AddActuator("Drivetrain", "gyro", std::static_pointer_cast<ADXRS450_Gyro>(drivetrainGyro));
 
-    visionTuple.reset(new VisionHandler::VisionTuple(-999, -999, -999));
+    visionTuple.reset(new VisionHandler::VisionTuple(-999, -999, -999, -999, -999, -999));
     arduinoComm.reset(new SerialPort(115200, SerialPort::Port::kMXP));
 }

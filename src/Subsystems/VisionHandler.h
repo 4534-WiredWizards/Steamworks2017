@@ -35,59 +35,100 @@ public:
 	void InitDefaultCommand();
 	class VisionTuple {
 		public:
-			double getDistance() {
-				return distance;
-			}
-			void setDistance(double distance) {
-			this->distance = distance;
+
+			double getGearDistance() {
+				return gearDistance;
 			}
 
-			double getCenter() {
-				return center;
+			void setGearDistance(double gearDistance) {
+			this->gearDistance = gearDistance;
 			}
 
-			void setCenter(double center) {
-				this->center = center;
+			double getGearCenter() {
+				return gearCenter;
 			}
 
-			double getAngle() {
-				return angle;
+			void setGearCenter(double gearCenter) {
+				this->gearCenter = gearCenter;
 			}
 
-			void setAngle(double angle) {
-				this->angle = angle;
+			double getGearAngle() {
+				return gearAngle;
 			}
 
-			VisionTuple(double x, double theta, double center) {
-				this->distance = x;
-				this->angle = theta;
-				this->center = center;
+			void setGearAngle(double gearAngle) {
+				this->gearAngle = gearAngle;
+			}
+
+			double getBoilerDistance() {
+			return boilerDistance;
+			}
+			void setBoilerDistance(double boilerDistance) {
+			this->boilerDistance = boilerDistance;
+			}
+
+			double getBoilerCenter() {
+				return boilerCenter;
+			}
+
+			void setBoilerCenter(double boilerCenter) {
+				this->boilerCenter = boilerCenter;
+			}
+
+			double getBoilerAngle() {
+				return boilerAngle;
+			}
+
+			void setBoilerAngle(double boilerAngle) {
+				this->boilerAngle = boilerAngle;
+			}
+
+			VisionTuple(double gearDistance, double gearTheta, double gearCenter, double boilerDistance, double boilerTheta, double boilerCenter) {
+				this->gearDistance = gearDistance;
+				this->gearAngle = gearTheta;
+				this->gearCenter = gearCenter;
+				this->boilerDistance = boilerDistance;
+				this->boilerAngle = boilerTheta;
+				this->boilerCenter = boilerCenter;
 			}
 
 			std::string toString() {
-				return "(" + std::to_string(this->distance) + "," + std::to_string(this->angle) + "," + std::to_string(this->center) + ")";
+				return "(" + std::to_string(this->gearDistance) + "," + std::to_string(this->gearAngle) + "," + std::to_string(this->gearCenter) + ")";
 			}
 
-			bool isDefault() {
-				return this->distance == -999 && this->angle == -999 && this->center == -999;
+			bool gearIsDefault() {
+				return this->gearDistance == -999 && this->gearAngle == -999 && this->gearCenter == -999;
+			}
+			bool boilerIsDefault() {
+				return this->boilerDistance == -999 && this->boilerAngle == -999 && this->boilerCenter == -999;
 			}
 
-			void update(double x, double theta, double center) {
-				this->distance = x;
-				this->angle = theta;
-				this->center = center;
+			void update(double gearDistance, double gearTheta, double gearCenter, double boilerDistance, double boilerTheta, double boilerCenter) {
+				this->gearDistance = gearDistance;
+				this->gearAngle = gearTheta;
+				this->gearCenter = gearCenter;
+				this->boilerDistance = boilerDistance;
+				this->boilerAngle = boilerTheta;
+				this->boilerCenter = boilerCenter;
 			}
+
 		private:
-			double distance;
-			double angle;
-			double center;
+			double gearDistance;
+			double gearAngle;
+			double gearCenter;
+			double boilerDistance;
+			double boilerAngle;
+			double boilerCenter;
 
 		};
 
 	std::shared_ptr<VisionHandler::VisionTuple> visionTuple;
 	std::shared_ptr<VisionHandler::VisionTuple> getCurrentTuple();
 
-	void updateSubsystem();
+	enum Mode { kGear, kBoiler, kDefault };
+	void setMode(Mode camera);
+	void readGearValues();
+	void readBoilerValues();
 
 /*
 	void initTable(ITable subtable) {

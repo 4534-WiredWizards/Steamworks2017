@@ -42,14 +42,42 @@ void VisionHandler::InitDefaultCommand() {
 std::shared_ptr<VisionHandler::VisionTuple> VisionHandler::getCurrentTuple() {
 	return visionTuple;
 }
+void VisionHandler::setMode(VisionHandler::Mode camera) {
+	if (camera == Mode::kGear) {
+		visionTable->PutString("whichCamera", "gear");
+	}
+	if (camera == Mode::kBoiler) {
+		visionTable->PutString("whichCamera", "boiler");
+	}
+	if (camera == Mode::kDefault) {
+		visionTable->PutString("whichCamera", "gear");
+	}
+}
 
-void VisionHandler::updateSubsystem() {
+void VisionHandler::readGearValues() {
 	static std::shared_ptr<VisionHandler::VisionTuple> newTuple;
-	newTuple.reset(new VisionHandler::VisionTuple(-999, -999, -999));
-	newTuple->setAngle(visionTable->GetNumber("gearAngle", -999));
-	newTuple->setDistance(visionTable->GetNumber("gearDistance", -999));
-	newTuple->setCenter(visionTable->GetNumber("gearCV",-999));
-	if(newTuple->isDefault()) {
+	newTuple.reset(new VisionHandler::VisionTuple(-999, -999, -999, -777, -777, -777));
+	newTuple->setGearAngle(visionTable->GetNumber("gearAngle", -999));
+	newTuple->setGearDistance(visionTable->GetNumber("gearDistance", -999));
+	newTuple->setGearCenter(visionTable->GetNumber("gearCV",-999));
+	if(newTuple->gearIsDefault()) {
+		missedCount++;
+	} else {
+		this->visionTuple = newTuple;
+	}
+	if(missedCount > CACHE_MISSED_NUM) {
+		missedCount = 0;
+		this->visionTuple = newTuple;
+	}
+}
+
+void VisionHandler::readBoilerValues() {
+	static std::shared_ptr<VisionHandler::VisionTuple> newTuple;
+	newTuple.reset(new VisionHandler::VisionTuple(-777, -777, -777, -999, -999, -999));
+	newTuple->setBoilerAngle(visionTable->GetNumber("boilerAngle", -999));
+	newTuple->setBoilerDistance(visionTable->GetNumber("boilerDistance", -999));
+	newTuple->setBoilerCenter(visionTable->GetNumber("boilerCV",-999));
+	if(newTuple->boilerIsDefault()) {
 		missedCount++;
 	} else {
 		this->visionTuple = newTuple;

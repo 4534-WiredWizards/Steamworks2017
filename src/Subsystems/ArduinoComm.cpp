@@ -27,9 +27,9 @@
 ArduinoComm::ArduinoComm() : Subsystem("ArduinoComm") {
 	arduinoPort = RobotMap::arduinoComm;
 	inputBuffer = (char*)calloc(MAX_INPUT_CHAR, sizeof(char));
-	rightDistance = -999;
-	leftDistance = -999;
-	angleVal = -999;
+	rightDistance = -555;
+	leftDistance = -555;
+	angleVal = -555;
 	arduinoPort->EnableTermination();
 
 }
