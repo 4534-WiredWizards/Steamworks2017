@@ -82,6 +82,7 @@ void Robot::AutonomousInit() {
 	if (autonomousCommand.get() != nullptr)
 		autonomousCommand->Start();
 	arduinoComm->WriteTest("Gg");
+	Robot::drivetrain->ResetGyro();
 }
 
 void Robot::AutonomousPeriodic() {

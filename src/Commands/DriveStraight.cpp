@@ -32,7 +32,7 @@ void DriveStraight::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveStraight::Execute() {
-	Robot::drivetrain->DriveStraight(m_rate);
+	Robot::drivetrain->Forward(m_rate);
 }
 
 // Make this return true when this Command no longer needs to run execute()

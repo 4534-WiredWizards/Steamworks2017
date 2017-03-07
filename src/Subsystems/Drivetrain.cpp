@@ -120,6 +120,10 @@ void Drivetrain::Cartesian(double x, double y, double turn, bool isFieldOriented
 double Drivetrain::GetGyroAngle() {
 	return gyro->GetAngle();
 }
+
+void Drivetrain::ResetGyro() {
+	gyro->Reset();
+}
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 

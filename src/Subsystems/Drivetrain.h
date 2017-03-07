@@ -51,6 +51,7 @@ public:
 	void MechanumDrive(std::shared_ptr<Joystick> joystick);
 	void Cartesian(double x, double y, double turn, bool isFieldOriented);
 	double GetGyroAngle();
+	void ResetGyro();
 };
 
 #endif
