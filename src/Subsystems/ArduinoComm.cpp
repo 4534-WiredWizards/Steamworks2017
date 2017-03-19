@@ -29,7 +29,7 @@ ArduinoComm::ArduinoComm() : Subsystem("ArduinoComm") {
 	inputBuffer = (char*)calloc(MAX_INPUT_CHAR, sizeof(char));
 	rightDistance = -555;
 	leftDistance = -555;
-	angleVal = -555;
+	angleVal = -888;
 	arduinoPort->EnableTermination();
 
 }
