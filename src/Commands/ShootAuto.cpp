@@ -6,16 +6,16 @@
 #include "Kick.h"
 
 #define SHOOTER_POWER 0.7
-
+#define TURN_ANGLE 90
 
 ShootAuto::ShootAuto() {
 	AddParallel(new DriveStraight(1.3,0.5));
 	AddSequential(new SpinUp(1.3, -SHOOTER_POWER));
 
 	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
-		AddParallel(new TurnToAngle(-90));
+		AddParallel(new TurnToAngle(-TURN_ANGLE));
 	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
-		AddParallel(new TurnToAngle(90));
+		AddParallel(new TurnToAngle(TURN_ANGLE));
 	}
 	AddSequential(new SpinUp(1.0, -SHOOTER_POWER));
 
