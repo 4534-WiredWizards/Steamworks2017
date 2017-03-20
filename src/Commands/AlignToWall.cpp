@@ -63,9 +63,9 @@ void AlignToWall::Execute() {
 		//both sensors broken, pass.
 		forward = 0.0;
 	} else if (Robot::arduinoComm->GetDistance() > TARGET_DISTANCE + TOLERANCE) {
-		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 30) + 0.3; //for smooth motion
+		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) + 0.2; //for smooth motion
 	} else if (Robot::arduinoComm->GetDistance() < TARGET_DISTANCE - TOLERANCE) {
-		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 30) - 0.3;
+		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) - 0.2;
 	} else {
 		forward = 0.0;
 	}
