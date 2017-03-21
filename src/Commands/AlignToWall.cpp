@@ -64,8 +64,14 @@ void AlignToWall::Execute() {
 		forward = 0.0;
 	} else if (Robot::arduinoComm->GetDistance() > TARGET_DISTANCE + TOLERANCE) {
 		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) + 0.2; //for smooth motion
+		if (forward < 0.9) {
+			forward = 0.9; // constrain value to -0.7
+		}
 	} else if (Robot::arduinoComm->GetDistance() < TARGET_DISTANCE - TOLERANCE) {
 		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) - 0.2;
+		if (forward < -0.9) {
+			forward = -0.9; // constrain value to -0.7
+		}
 	} else {
 		forward = 0.0;
 	}
