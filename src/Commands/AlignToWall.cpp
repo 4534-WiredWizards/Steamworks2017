@@ -35,14 +35,14 @@ void AlignToWall::Execute() {
 		Robot::arduinoComm->WriteTest("bO");
 		rotate = 0.0;
 	} else if (Robot::arduinoComm->GetAngle() < -5) {
-		rotate = (Robot::arduinoComm->GetAngle() + 2) * -0.1; //  scales the values down as we get closer.
-		if (rotate > 0.7) {
-			rotate = 0.7; // constrain value to 0.7
+		rotate = (Robot::arduinoComm->GetAngle() + 2) * 0.05; //  scales the values down as we get closer.
+		if (rotate > -0.7) {
+			rotate = -0.7; // constrain value to 0.7
 		}
 	} else if (Robot::arduinoComm->GetAngle() > 5) {
-		rotate = (Robot::arduinoComm->GetAngle() - 2) * -0.1; //  scales the values down as we get closer.
-		if (rotate < -0.7) {
-			rotate = -0.7; // constrain value to -0.7
+		rotate = (Robot::arduinoComm->GetAngle() - 2) * 0.05; //  scales the values down as we get closer.
+		if (rotate < 0.7) {
+			rotate = 0.7; // constrain value to -0.7
 		}
 	} else {
 		rotate = 0.0;
@@ -50,7 +50,7 @@ void AlignToWall::Execute() {
 	}
 
 	//strafing
-	strafe = Robot::oi->getJoystick1()->GetRawAxis(1);
+	strafe = Robot::oi->getJoystick1()->GetRawAxis(0);
 	if (strafe < 0.2 && strafe > -0.2) {
 		strafe = 0; //adds a dead zone.
 	}
@@ -63,12 +63,12 @@ void AlignToWall::Execute() {
 		//both sensors broken, pass.
 		forward = 0.0;
 	} else if (Robot::arduinoComm->GetDistance() > TARGET_DISTANCE + TOLERANCE) {
-		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) + 0.2; //for smooth motion
+		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) + 0.1; //for smooth motion
 		if (forward < 0.9) {
 			forward = 0.9; // constrain value to -0.7
 		}
 	} else if (Robot::arduinoComm->GetDistance() < TARGET_DISTANCE - TOLERANCE) {
-		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) - 0.2;
+		forward = ((Robot::arduinoComm->GetDistance() - TARGET_DISTANCE) / 50) - 0.1;
 		if (forward < -0.9) {
 			forward = -0.9; // constrain value to -0.7
 		}
