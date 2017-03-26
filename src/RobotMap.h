@@ -40,6 +40,8 @@ public:
 	static std::shared_ptr<ADXRS450_Gyro> drivetrainGyro;
 	static std::shared_ptr<VisionHandler::VisionTuple> visionTuple;
 	static std::shared_ptr<SerialPort> arduinoComm;
+	static std::shared_ptr<DigitalInput> leftLimit;
+	static std::shared_ptr<DigitalInput> rightLimit;
 	static void init();
 };
 #endif
