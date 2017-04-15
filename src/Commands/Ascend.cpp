@@ -25,7 +25,7 @@ Ascend::Ascend(): Command() {
 
 // Called just before this Command runs the first time
 void Ascend::Initialize() {
-	j = Robot::oi->getJoystick1();
+	//j = Robot::oi->getJoystick1();
 	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
 		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
 	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {

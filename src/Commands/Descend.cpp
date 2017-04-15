@@ -25,7 +25,14 @@ Descend::Descend(): Command() {
 
 // Called just before this Command runs the first time
 void Descend::Initialize() {
-
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kInvalid) {
+		Robot::arduinoComm->WriteTest("Y"); // Will use red color.
+	}
+	Robot::arduinoComm->WriteTest("b");
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -41,6 +48,12 @@ bool Descend::IsFinished() {
 // Called once after isFinished returns true
 void Descend::End() {
 	Robot::climber->Stop();
+	Robot::arduinoComm->WriteTest("w");
+	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
+		Robot::arduinoComm->WriteTest("B"); // Will use color blue for animations on LEDS.
+	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
+		Robot::arduinoComm->WriteTest("R"); // Will use red color.
+	}
 }
 
 // Called when another command which requires one or more of the same
