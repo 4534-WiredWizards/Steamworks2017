@@ -53,9 +53,9 @@ void Drivetrain::DriveStraight(double rate) {
 
 void Drivetrain::MechanumDrive(std::shared_ptr<Joystick> joystick) {
 	SmartDashboard::PutNumber("Gyro Angle", gyro->GetAngle());
-	axis0 = -joystick->GetRawAxis(0);
-	axis1 = -joystick->GetRawAxis(1);
-	axis4 = joystick->GetRawAxis(4);
+	axis0 = -joystick->GetRawAxis(0) * .6;
+	axis1 = -joystick->GetRawAxis(1) * .6;
+	axis4 = joystick->GetRawAxis(4) * .6;
 	//std::cout << "======" << std::endl;
 	//std::cout << axis0 << std::endl;
 	//std::cout << axis1 << std::endl;
