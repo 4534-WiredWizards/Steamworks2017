@@ -35,9 +35,13 @@ void ShootSpinner::Execute() {
 		Robot::tempShooter->SetSpinner(0.0);
 	}
 	else {
-//		Robot::tempShooter->SetSpinner(-.7);
+		if (Robot::isDemoMode){
 		Robot::tempShooter->SetSpinner(-.4534);
 	}
+		else {
+			Robot::tempShooter->SetSpinner(-0.7);
+		}
+}
 }
 
 // Make this return true when this Command no longer needs to run execute()

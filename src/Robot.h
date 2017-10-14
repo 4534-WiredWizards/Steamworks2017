@@ -62,6 +62,6 @@ public:
 
 	frc::SendableChooser<frc::Command*> chooser;
 	frc::SendableChooser<DriverStation::Alliance> allianceChooser;
-
+	static bool isDemoMode;
 };
 #endif
