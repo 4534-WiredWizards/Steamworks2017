@@ -25,10 +25,10 @@ FarShootAuto::FarShootAuto() {
 
 	if (Robot::allianceColor == DriverStation::Alliance::kBlue){
 		AddSequential(new TurnToAngle(-60));
-		AddSequential(new DriveStraight(.7, .5));
+		AddSequential(new DriveStraight(1.0, .5));
 	} else if (Robot::allianceColor == DriverStation::Alliance::kRed) {
 		AddSequential(new TurnToAngle(60));
-		AddSequential(new DriveStraight(.7, .5));
+		AddSequential(new DriveStraight(1.0, .5));
 	}
 
 
